@@ -364,3 +364,220 @@ repeat은 column을 반복시켜주는 함수이다. `grid-template-columns` 에
 
 참고링크: https://justmakeyourself.tistory.com/entry/grid-extra
 
+### auto-fill, auto-fit
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(auto-fit, 40px);
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+    </div>
+  </body>
+</html>
+```
+
+웹서비스를 구축할 때, 얼만큼의 데이터가 들어올지 예측할 수 없는 경우가 생긴다. 이런 경우에는, 특정 횟수만큼만 반복하는 것을 정하기가 쉽지 않은데 이럴 때, `auto-fit` 을 활용한다. 정해진 범위안에 정해진 크기만큼 최대한 반복하고 싶을 때 활용하는 것이 바로  `auto-fit`이다.
+
+이렇게 `auto-fit` 을 사용하면 flexible한 웹 페이지를 만든 것처럼 보이지만 column의 길이도 결국 고정된 상태에서만 페이지가 작동한다. 따라서 여기서 실제 길이 값 대신, `minmax`를 활용하여 코드를 작성할 수 있다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+    </div>
+  </body>
+</html>
+```
+
+이렇게 코드를 작성하면 상황에 따라 동작하는 responsive한 웹 페이지를 작성할 수 있다. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+    </div>
+  </body>
+</html>
+```
+
+그 다음, `auto-fit`을 `auto-fill` 로 바꿔보자. `auto-fill` 을 사용하면 `ghost-grid`가 생성된다. (`ghost-grid` 는 gird가 브라우저 상에 생기지만 그에 해당하는 블락이 없어 사용자 화면에는 보이지 않는 grid를 의미) 이것이 의미하는 것은 `auto-fill`은 기존에 있는 layout을 채워나가는 방식으로 동작한다는 것이다. (공간을 미리 배정해둔 grid를 생성한 뒤, 해당되는 cell을 그 안에 입력하는 방식)
+
+**Tip**: 개념이 생소해서 조금 어려울 수 있는데, 핵심 차이점은 이것이다. `auto-fit`은 content를 stretch해서 browser를 꽉 채우는 방식이고, `auto-fill`은 최대한 모아서 grid를 만들고 content가 있으면 그 안에 채워넣는 방식으로 생각하면 쉽다.
+
+다음은 auto-fill과 auto-fit 의 차이점을 보여주는 코드이다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+    <style>
+      .container {
+        margin: 40px;
+        background-color: #00d2d3;
+        padding: 10px;
+        display: grid;
+        grid-gap: 8px;
+        grid-template-rows: 50px;
+        grid-auto-rows: 50px;
+      }
+      .container:first-child {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      }
+      .container:last-child {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+      }
+      .item {
+        background-color: #feca57;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </body>
+</html>
+```
+
