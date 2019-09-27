@@ -581,3 +581,96 @@ repeat은 column을 반복시켜주는 함수이다. `grid-template-columns` 에
 </html>
 ```
 
+### Justify Content, Align Content and Place Content
+
+flexbox에 justify와 align이 있는 것처럼, grid에도 justify, align이 있다. 그런데 같은 justify에서도 grid에는 content와 item이 존재한다. `justify-content` 와 `justify-item` 에는 차이점이 존재한다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(4, 100px);
+      justify-content: center;
+      align-content: center;
+      height: 100vh;
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+    </div>
+  </body>
+</html>
+```
+
+`justify-content` 의 경우에는 `justify-content:center` 로 코드를 작성하면 box 자체가 브라우저 상에서 중앙으로 이동한다. 만든 grid 전체를 움직이는 것이다. `align-content`의 경우에도 마찬가지다.
+
+`place-content` 라는 property도 존재하는데 첫번째 값은 `align-content` 값이고 두번째 값은  `justify-content` 값이다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(4, 100px);
+      place-content: start center;
+      height: 100vh;
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+      <div class="fourth"></div>
+    </div>
+  </body>
+</html>
+```
+
