@@ -674,3 +674,97 @@ flexbox에 justify와 align이 있는 것처럼, grid에도 justify, align이 �
 </html>
 ```
 
+### Justify Items, Align Items and Place Items
+
+box안에 있는 item을 움직이고 싶을 때 사용하는 것이 `justify-items`, `align-items` 이다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(4, 100px);
+      justify-items: center;
+      height: 100vh;
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first">1</div>
+      <div class="second">2</div>
+      <div class="third">3</div>
+      <div class="fourth">4</div>
+    </div>
+  </body>
+</html>
+```
+
+이렇게 코드를 작성하면 item이 box 중앙에 위치한 것을 볼 수 있다. box 자체를 움직이는 것이 아니라 box안에 있는 item을 위치시키는 property이다.
+
+content와 마찬가지로 items에도 `place-items` 가 존재한다.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(4, 100px);
+      place-items: center center;
+      height: 100vh;
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first">1</div>
+      <div class="second">2</div>
+      <div class="third">3</div>
+      <div class="fourth">4</div>
+    </div>
+  </body>
+</html>
+```
+
+`place-items` 라는 property도 존재하는데 첫번째 값은 `align-items` 값이고 두번째 값은  `justify-items` 값이다.
+
