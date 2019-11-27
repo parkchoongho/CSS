@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS Grid</title>
+  </head>
+  <style>
+    .father {
+      display: grid;
+      grid-gap: 10px;
+      grid-auto-rows: 120px;
+      grid-template-columns: repeat(4, 100px);
+      place-items: center center;
+      height: 100vh;
+    }
+    .first {
+      background-color: #e74c3c;
+    }
+    .second {
+      background-color: #f39c12;
+    }
+    .third {
+      background-color: #f1c40f;
+    }
+    .fourth {
+      background-color: #1abc9c;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="first">1</div>
+      <div class="second">2</div>
+      <div class="third">3</div>
+      <div class="fourth">4</div>
+    </div>
+  </body>
+</html>

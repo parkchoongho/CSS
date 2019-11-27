@@ -768,3 +768,5 @@ content와 마찬가지로 items에도 `place-items` 가 존재한다.
 
 `place-items` 라는 property도 존재하는데 첫번째 값은 `align-items` 값이고 두번째 값은  `justify-items` 값이다.
 
+### Grid Column, Row Start and End
+
